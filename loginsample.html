@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracking Application</title>
     <style>
-        /* Your CSS styles go here */
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -45,46 +44,41 @@
             top: 276px;
         }
 
-        /* Add animation keyframes */
-@keyframes scaleAnimation {
-    0% {
-        transform: scale(1);
+        @keyframes scaleAnimation {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
     }
-    50% {
-        transform: scale(1.1); /* Increase the scale factor for a bigger animation */
-    }
-    100% {
-        transform: scale(1);
-    }
-}
 
-/* Apply the animation to the ellipse */
-.ellipse-1 {
-    background: #721d5f;
-    border-radius: 50%;
-    width: 506px;
-    height: 493px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    animation: scaleAnimation 3s infinite; /* Adjust the animation duration and other properties as needed */
-}
+    .ellipse-1 {
+        background: #721d5f;
+        border-radius: 50%;
+        width: 506px;
+        height: 493px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        animation: scaleAnimation 3s infinite;
+        }
 
-
-        /* Define keyframes for the animation */
 @keyframes fadeInOut {
     0% {
-        opacity: 0; /* Start with opacity 0 (fully transparent) */
+        opacity: 0;
     }
     50% {
-        opacity: 1; /* Increase opacity to 1 (fully visible) */
+        opacity: 1;
     }
     100% {
-        opacity: 0; /* Fade out by setting opacity back to 0 */
+        opacity: 0;
     }
 }
 
-/* Apply the animation to the text */
 .task-tracking-application {
     color: #f5f5f5;
     text-align: left;
@@ -94,13 +88,11 @@
     top: 147px;
     width: 344px;
     height: 166px;
-    animation: fadeInOut 3s infinite; /* Adjust the animation duration and other properties as needed */
+    animation: fadeInOut 3s infinite;
 }
 
-
-        /* Style for the login form */
         .login-form {
-            max-width: 1000px; /* Increase the max-width to make the form wider */
+            max-width: 1000px;
             margin: 0 auto;
             padding-right: 50px;
             padding-left: 50px;
@@ -152,75 +144,68 @@
 
 
         .maintain-track-of-all-your-tasks-with-ease {
-  color: #f3eeee;
-  text-align: center;
-  font: 700 32px "Inter", sans-serif;
-  position: relative;
-  width: 351px;
-  height: 103px;
-  left: 950px;
-  top: 650px;
-  transition: color 0.3s ease; /* Add a transition for smooth color change */
-}
+        color: #f3eeee;
+        text-align: center;
+        font: 700 32px "Inter", sans-serif;
+        position: relative;
+        width: 351px;
+        height: 103px;
+        left: 950px;
+        top: 650px;
+        transition: color 0.3s ease;
+        }
 
-.maintain-track-of-all-your-tasks-with-ease:hover {
-  color: #721d5f; /* Change the color on hover */
-}
+        .maintain-track-of-all-your-tasks-with-ease:hover {
+        color: #721d5f;
+        }
 
 
 
     </style>
-    <!-- ... (existing meta tags and styles) ... -->
 </head>
 <body>
     <div class="desktop-1">
-  <div class="rectangle-2"></div>
+        <div class="rectangle-2"></div>
         <div class="frame-1">
             <div class="ellipse-1"></div>
             <div class="task-tracking-application">TASK TRACKING APPLICATION</div>
         </div>
         <div class="maintain-track-of-all-your-tasks-with-ease">
             Track all your tasks with ease
-          </div>
-        <!-- ... (existing design elements) ... -->
+        </div>
     </div>
     <div class="login-form">
         <h2>Login</h2>
-        <form method="POST" action="validate_login.php">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required><br><br>
 
-            <input type="submit" value="Login">
+            <input type="button" value="Login" onclick="validateLogin()">
         </form>
-        <!-- Display login error message here -->
-        <div id="login-error" style="color: red;"></div>
     </div>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script>
-        document.getElementById("login-form").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+    
 
-            fetch("fetch_spreadsheet_data.php")
-                .then(response => response.json())
-                .then(data => {
-                    const user = data.find(entry => entry[0] === email && entry[1] === password);
-                    if (user) {
-                        alert("Login successful!");
-                        window.location.href = "dashboard.php";
-                    } else {
-                        document.getElementById("login-error").textContent = "Invalid email or password. Please try again.";
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching data from spreadsheet:", error);
-                    document.getElementById("login-error").textContent = "An error occurred. Please try again later.";
-                });
-        });
+
+    <script>
+        function validateLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            var allowedUsers = {
+                "rishithabandaru22@gmail.com": "mahirishi",
+                "mahithabandaru22@gmail.com": "rishimahi"
+            };
+
+            if (allowedUsers.hasOwnProperty(username) && allowedUsers[username] === password) {
+                alert("Login successful!");
+                window.location.href = "home.html";
+            } else {
+                alert("Login failed. Please check your credentials.");
+            }
+        }
     </script>
 </body>
 </html>
