@@ -178,10 +178,10 @@
         <h2>Login</h2>
         <form>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
+            <input type="text" id="username" name="username" placeholder="enter user as username" required><br><br>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
+            <input type="password" id="password" name="password" placeholder="enter usergit as password" required><br><br>
 
             <input type="button" value="Login" onclick="validateLogin()">
         </form>
@@ -195,8 +195,7 @@
             var password = document.getElementById("password").value;
 
             var allowedUsers = {
-                "rishithabandaru22@gmail.com": "mahirishi",
-                "mahithabandaru22@gmail.com": "rishimahi"
+                "user@gmail.com": "usergit"
             };
 
             if (allowedUsers.hasOwnProperty(username) && allowedUsers[username] === password) {
